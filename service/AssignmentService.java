@@ -6,6 +6,7 @@ import entity.detail.DetailRoute;
 import main.Main;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 public class AssignmentService {
@@ -34,7 +35,9 @@ public class AssignmentService {
                     addDtRouteToArrayList(detailRouteArrayList,numberRoute);
 
                     Main.assignment.addAssignmentToMap(driver,detailRouteArrayList);
+
                     Main.assignment.writeMapToFile(ASSIGNMENT_FILE);
+
                     Main.assignment.showAssignmentMap();
                 } catch (Exception ex) {
                     System.out.println("Mời nhập lại mã");
@@ -48,6 +51,7 @@ public class AssignmentService {
 
     public static void addDtRouteToArrayList(ArrayList<DetailRoute> detailRouteArrayList,int numberRoute) {
         int totalNumberOfTurns = 0;
+        double statistical = 0;
         for (int i = 0; i < numberRoute; i++) {
             System.out.println("Nhập mã tuyến");
             int idRoute = new Scanner(System.in).nextInt();
@@ -59,11 +63,21 @@ public class AssignmentService {
                 break;
             }
             totalNumberOfTurns += numberOfTurns;
+            if (totalNumberOfTurns>15) {
+                System.out.println("Nhập quá 15.");
+                break;
+            }
             DetailRoute detailRoute = new DetailRoute(route, numberOfTurns);
             detailRouteArrayList.add(detailRoute);
-            System.out.println(totalNumberOfTurns);
+            System.out.println("Tổng số lượt trong ngày: " + totalNumberOfTurns);
 
+
+            statistical+= route.getDistance() * numberOfTurns;
         }
+        //khoang cach 1 ngayf  = khoang cach * so lan * so tuyen
+        System.out.print("Tổng khoảng cách trong ngày: ");
+        statistical=statistical*numberRoute;
+        System.out.println(statistical);
     }
 
     public static void sort() {
