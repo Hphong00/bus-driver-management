@@ -33,7 +33,6 @@ public class AssignmentService {
                     ArrayList<DetailRoute> detailRouteArrayList = new ArrayList<DetailRoute>();
                     addDtRouteToArrayList(detailRouteArrayList,numberRoute);
 
-
                     Main.assignment.addAssignmentToMap(driver,detailRouteArrayList);
                     Main.assignment.writeMapToFile(ASSIGNMENT_FILE);
                     Main.assignment.showAssignmentMap();
@@ -48,16 +47,22 @@ public class AssignmentService {
     }
 
     public static void addDtRouteToArrayList(ArrayList<DetailRoute> detailRouteArrayList,int numberRoute) {
+        int totalNumberOfTurns = 0;
         for (int i = 0; i < numberRoute; i++) {
             System.out.println("Nhập mã tuyến");
             int idRoute = new Scanner(System.in).nextInt();
             Route route = RouteService.findRouteToArraylist(idRoute);
-
             System.out.println("Nhập sô lượt lái của tuyến");
             int numberOfTurns = new Scanner(System.in).nextInt();
-
+            if (totalNumberOfTurns>15) {
+                System.out.println("Nhập quá 15.");
+                break;
+            }
+            totalNumberOfTurns += numberOfTurns;
             DetailRoute detailRoute = new DetailRoute(route, numberOfTurns);
             detailRouteArrayList.add(detailRoute);
+            System.out.println(totalNumberOfTurns);
+
         }
     }
 
