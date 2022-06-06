@@ -14,14 +14,14 @@ public class Main {
     public static InitializeData initializeData = new InitializeData();
     public static Assignment assignment = new Assignment();
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         DriverService driverService = new DriverService();
         RouteService routeService = new RouteService();
 
         sMenu();
         select();
     }
-    private static void select() throws IOException {
+    private static void select() throws Exception {
         boolean cont = true;
         do {
             System.out.print("Mời bạn chọn: ");
@@ -56,16 +56,12 @@ public class Main {
                     AssignmentService.sort();
                     sMenu();
                     break;
-//                case 7:
-//                    TranscriptService.sort();
-//                    sMenu();
-//                    break;
-//                case 8:
-//                    TranscriptService.totalPoint();
-//                    sMenu();
-//                    break;
-//                case 9:
-//                    cont = false;
+                case 7:
+//                    Assignment.statistical();
+                    sMenu();
+                    break;
+                case 8:
+                    System.exit(0);
             }
         } while (cont);
     }
@@ -79,5 +75,6 @@ public class Main {
         System.out.println("5. Nhập danh sách phân công. ");
         System.out.println("6. Sắp xếp. ");
         System.out.println("7. Thống kê khoảng các chạy xe trong một ngày. ");
+        System.out.println("8. Thoat. ");;
     }
 }

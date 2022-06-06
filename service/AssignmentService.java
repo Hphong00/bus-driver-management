@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class AssignmentService {
     public static String ASSIGNMENT_FILE = "assignment.txt";
 
-    public static void addListAssignment() {
+    public static void addListAssignment() throws Exception {
         do {
             int numberAssignment = -1;
             try {

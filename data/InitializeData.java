@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class InitializeData {
     public void writeArrayListToFile(String file, ArrayList arrayList) throws IOException {
-        FileWriter writer = new FileWriter(file);
+        FileWriter writer = new FileWriter(file, true);
         BufferedWriter bufferedWriter = new BufferedWriter(writer);
         try{
             for(Object obj: arrayList) {
